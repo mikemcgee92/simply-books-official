@@ -106,6 +106,22 @@ function BookForm({ obj = initialState }) {
         }}
       />
 
+      {/* TOGGLE PUBLIC/PRIVATE */}
+      <Form.Check
+        className="text-white mb-3"
+        type="switch"
+        id="public"
+        name="public"
+        label="Make public?"
+        checked={formInput.public}
+        onChange={(e) => {
+          setFormInput((prevState) => ({
+            ...prevState,
+            public: e.target.checked,
+          }));
+        }}
+      />
+
       {/* SUBMIT BUTTON  */}
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Book</Button>
     </Form>

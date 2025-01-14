@@ -1,5 +1,5 @@
 import { getAuthorBooks, getSingleAuthor, deleteSingleAuthor } from './authorData';
-import { getSingleBook, deleteBook } from './bookData';
+import { getSingleBook, deleteBook, publicBooks, getBooks } from './bookData';
 
 const viewBookDetails = (bookFirebaseKey) =>
   new Promise((resolve, reject) => {
@@ -34,4 +34,14 @@ const deleteAuthorBooks = (authorId) =>
       .catch((error) => reject(error));
   });
 
-export { viewBookDetails, viewAuthorDetails, deleteAuthorBooks };
+const getPublicPrivateBooks = (uid) =>
+  new Promise((resolve, reject) => {
+    Promise.all([getBooks(uid), publicBooks(uid)])
+      .then(([privateBooksArray, publicBooksArray]) => {
+        const allBooksArray = [...privateBooksArray, ...publicBooksArray];
+        resolve(allBooksArray);
+      })
+      .catch((error) => reject(error));
+  });
+
+export { viewBookDetails, viewAuthorDetails, deleteAuthorBooks, getPublicPrivateBooks };
