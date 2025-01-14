@@ -5,7 +5,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import { getBooks } from '../api/bookData';
+import { getPublicPrivateBooks } from '../api/mergedData';
 import { useAuth } from '../utils/context/authContext';
 import BookCard from '../components/BookCard';
 
@@ -18,7 +18,7 @@ function Home() {
 
   // TODO: create a function that makes the API call to get all the books
   const getAllTheBooks = () => {
-    getBooks(user.uid).then(setBooks);
+    getPublicPrivateBooks(user.uid).then(setBooks);
   };
 
   // TODO: make the call to the API to get all the books on component render
