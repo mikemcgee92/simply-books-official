@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { deleteBook } from '../api/bookData';
+import { deleteBook, updateBook } from '../api/bookData';
 
 function BookCard({ bookObj, onUpdate }) {
   // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
@@ -14,6 +14,13 @@ function BookCard({ bookObj, onUpdate }) {
     if (window.confirm(`Delete ${bookObj.title}?`)) {
       deleteBook(bookObj.firebaseKey).then(() => onUpdate());
     }
+  };
+
+  const addToCart = () => {
+    updateBook({ ...bookObj, cart: true }).then(() => onUpdate());
+  };
+  const removeFromCart = () => {
+    updateBook({ ...bookObj, cart: false }).then(() => onUpdate());
   };
 
   return (
@@ -43,6 +50,15 @@ function BookCard({ bookObj, onUpdate }) {
         <Button variant="danger" onClick={deleteThisBook} className="m-2">
           DELETE
         </Button>
+        {bookObj.cart ? (
+          <Button variant="warning" onClick={removeFromCart} className="m-2">
+            REMOVE FROM CART
+          </Button>
+        ) : (
+          <Button variant="success" onClick={addToCart} className="m-2">
+            ADD TO CART
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
@@ -55,6 +71,7 @@ BookCard.propTypes = {
     sale: PropTypes.bool,
     price: PropTypes.string,
     firebaseKey: PropTypes.string,
+    cart: PropTypes.bool,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

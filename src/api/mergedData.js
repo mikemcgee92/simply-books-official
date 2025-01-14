@@ -44,4 +44,14 @@ const getPublicPrivateBooks = (uid) =>
       .catch((error) => reject(error));
   });
 
-export { viewBookDetails, viewAuthorDetails, deleteAuthorBooks, getPublicPrivateBooks };
+const getBooksInCart = (uid) =>
+  new Promise((resolve, reject) => {
+    getPublicPrivateBooks(uid)
+      .then((booksInCart) => {
+        const books = booksInCart.filter((book) => book.cart);
+        resolve(books);
+      })
+      .catch((error) => reject(error));
+  });
+
+export { viewBookDetails, viewAuthorDetails, deleteAuthorBooks, getPublicPrivateBooks, getBooksInCart };
