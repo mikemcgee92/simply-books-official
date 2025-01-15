@@ -14,9 +14,14 @@ User goals:
 ## Features
 - Add, edit, and delete books and authors.
 - Toggle public or private display of books.
+- Users can mark books as public or private.
+- Public books are viewable by all users without needing to log in.
+- Private books are only visible to the user who created them.
+- Users can add books to a cart and simulate purchasing them.
+- No real transaction will occur, but the UI will allow users to add items to the cart and check out.
 
 ## Video walkthrough of Simply Books
-- [INSERT LINK HERE]()
+- [View Loom video of Simply Books](https://www.loom.com/share/f2b6e46e5dc64187b41d2297f2645006?sid=325e32ae-ead0-47a5-8c22-c3e02bf8cd8d)
 
 ## Relevant Links
 - [Check out the deployed site](https://simplybooks-mm92.netlify.app/)
@@ -25,14 +30,3 @@ User goals:
 ## Contributors
 - [Mike McGee](https://github.com/mikemcgee92)
 - [Nashville Software School](https://github.com/nss-evening-web-development)
-
-
-#### Stretch Goals:
-- **Public/Private Books**:
-   - Users can mark books as public or private.
-   - Public books are viewable by all users without needing to log in.
-   - Private books are only visible to the user who created them.
-   
-- **Simulated Book Purchases**:
-   - Users can add books to a cart and simulate purchasing them.
-   - No real transaction will occur, but the UI will allow users to add items to the cart and check out.
